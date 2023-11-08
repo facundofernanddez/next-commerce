@@ -18,7 +18,18 @@ export default function ShoppingCartModal() {
     cartDetails,
     removeItem,
     totalPrice,
+    redirectToCheckout,
   } = useShoppingCart();
+
+  const handleCheckoutClick = async (event: any) => {
+    event.preventDefault();
+
+    try {
+      const result = await redirectToCheckout();
+    } catch (error: any) {
+      console.log(error);
+    }
+  };
 
   return (
     <Sheet
@@ -93,7 +104,12 @@ export default function ShoppingCartModal() {
             </p>
 
             <div className="mt-6">
-              <Button className="w-full">Ckeckout</Button>
+              <Button
+                onClick={handleCheckoutClick}
+                className="w-full"
+              >
+                Ckeckout
+              </Button>
             </div>
 
             <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
